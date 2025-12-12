@@ -1,0 +1,326 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border:#e2e8f0;
+  --shadow:0 10px 30px rgba(2,6,23,.08);
+  --radius:18px;
+  --radius2:24px;
+  --accent:#10b981;
+  --danger:#ef4444;
+  --warn:#f59e0b;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: linear-gradient(#fff, var(--bg));
+  color:var(--text);
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  padding:16px 18px;
+  background:rgba(255,255,255,.8);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:40px;height:40px;border-radius:14px;
+  display:grid;place-items:center;
+  border:1px solid var(--border);
+  background:var(--card);
+  box-shadow:0 6px 18px rgba(2,6,23,.06);
+  font-size:20px;
+}
+.title{font-weight:800;letter-spacing:-.2px}
+.subtitle{font-size:12px;color:var(--muted);margin-top:2px}
+
+.top-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end}
+.pill{
+  font-size:12px;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.9);
+}
+
+.layout{
+  max-width:1200px;
+  margin:0 auto;
+  padding:18px;
+  display:grid;
+  grid-template-columns: 360px 1fr;
+  gap:16px;
+}
+
+@media (max-width: 980px){
+  .layout{grid-template-columns: 1fr}
+}
+
+.panel{display:flex;flex-direction:column;gap:12px}
+.content{display:flex;flex-direction:column;gap:12px}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius2);
+  box-shadow:0 8px 22px rgba(2,6,23,.05);
+  padding:14px;
+}
+.card.small{padding:12px}
+.card h2{margin:0 0 10px 0;font-size:14px}
+.card h3{margin:0 0 10px 0;font-size:13px}
+.muted{margin:4px 0 0 0;color:var(--muted);font-size:12px}
+
+.label{display:block;font-size:12px;color:var(--muted);margin:10px 0 6px}
+.select,.input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  outline:none;
+  background:#fff;
+}
+.select:focus,.input:focus{border-color:#c7d2fe;box-shadow:0 0 0 4px rgba(99,102,241,.12)}
+
+.search{position:relative}
+.searchIcon{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.55}
+.search .input{padding-left:34px}
+
+.row{display:flex;gap:10px;margin-top:12px}
+.btn{
+  flex:1;
+  padding:10px 10px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:#fff;
+  cursor:pointer;
+  font-weight:700;
+  font-size:12px;
+}
+.btn:hover{box-shadow:0 10px 26px rgba(2,6,23,.08)}
+.btn.primary{background: #0f172a;color:#fff;border-color:#0f172a}
+
+.sliderBlock{margin-top:10px}
+.sliderHeader{display:flex;justify-content:space-between;align-items:center}
+.value{font-size:12px;font-weight:800;color:#0f172a}
+.hint{margin:8px 0 0 0;font-size:12px;color:var(--muted);line-height:1.35}
+
+.kpis{display:grid;grid-template-columns: 1fr 1fr;gap:10px}
+.kpi{
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:10px;
+  background:#fbfcff;
+}
+.kpi .kpiTop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.kpi .kpiLabel{font-size:12px;color:var(--muted);font-weight:700}
+.kpi .kpiValue{font-size:18px;font-weight:900;margin-top:4px}
+.kpi .kpiDelta{font-size:11px;color:var(--muted);font-weight:800}
+.kpi.good{background:#ecfdf5;border-color:#bbf7d0}
+.kpi.bad{background:#fff1f2;border-color:#fecdd3}
+
+.note{
+  margin-top:10px;
+  border-radius:16px;
+  border:1px dashed var(--border);
+  padding:10px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.legend{display:grid;gap:8px}
+.legendItem{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+.dot.building{background:#cbd5e1}
+.dot.garden{background:#86efac}
+.dot.heat{background:#fca5a5}
+
+.cardHeaderRow{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  font-weight:800;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#f8fafc;
+}
+
+/* Leaflet-friendly map styles */
+.map{
+  position:relative;
+  height:420px;
+  border-radius:22px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  background:#f1f5f9; /* fallback mientras cargan tiles */
+}
+
+/* Desactivamos el “grid” decorativo en modo mapa real */
+.map::before{ content:none; }
+
+/* Leaflet: redondeo y recorte correcto */
+.leaflet-container{ border-radius:22px; }
+
+.marker{
+  position:absolute;
+  transform: translate(-50%, -50%);
+  text-align:left;
+}
+.markerBtn{
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.92);
+  border-radius:16px;
+  padding:8px 10px;
+  cursor:pointer;
+  box-shadow:0 10px 26px rgba(2,6,23,.08);
+  min-width: 160px;
+}
+.markerBtn:hover{transform: translateY(-1px)}
+.markerBtn.selected{outline: 3px solid rgba(15,23,42,.12)}
+.markerName{font-size:12px;font-weight:900}
+.markerMeta{margin-top:4px;font-size:11px;color:var(--muted);display:flex;gap:8px;align-items:center}
+.markerLeaf{
+  position:absolute;
+  right:-6px;
+  top:-6px;
+  width:28px;height:28px;
+  border-radius:999px;
+  display:grid;place-items:center;
+  border:1px solid #bbf7d0;
+  background:#ecfdf5;
+  box-shadow:0 8px 18px rgba(2,6,23,.08);
+}
+
+/* Heat layer toggle */
+/* Removed heatOff background toggle from .map */
+
+.belowMap{display:grid;grid-template-columns: 320px 1fr;gap:12px;margin-top:12px}
+@media (max-width: 980px){
+  .belowMap{grid-template-columns: 1fr}
+}
+
+.buildingCard{display:grid;gap:8px}
+.buildingCard .bcTitle{font-weight:900}
+.buildingCard .bcRow{font-size:12px;color:var(--muted)}
+.tag{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:12px;
+  font-weight:900;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#f8fafc;
+}
+.tag.good{background:#ecfdf5;border-color:#bbf7d0;color:#047857}
+.tag.warn{background:#fffbeb;border-color:#fde68a;color:#92400e}
+
+.tabs{display:flex;gap:8px;margin-bottom:10px}
+.tab{
+  border:1px solid var(--border);
+  background:#fff;
+  padding:8px 10px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:900;
+  font-size:12px;
+}
+.tab.active{background:#0f172a;color:#fff;border-color:#0f172a}
+.tabPanel{display:none}
+.tabPanel.active{display:block}
+
+.chart{border:1px solid var(--border);border-radius:18px;padding:10px;background:#fbfcff;margin-bottom:10px}
+.chartTitle{font-size:12px;font-weight:900;color:#0f172a;margin-bottom:10px}
+
+.bars{display:grid;gap:6px}
+.barRow{display:grid;grid-template-columns: 52px 1fr;gap:10px;align-items:center}
+.barLabel{font-size:11px;color:var(--muted);font-weight:900}
+
+.barTrack{position:relative;height:14px;border-radius:999px;background:#eef2ff;border:1px solid #e5e7eb;overflow:hidden}
+.barA{position:absolute;left:0;top:0;bottom:0;background:rgba(16,185,129,.35)}
+.barB{position:absolute;left:0;top:0;bottom:0;background:rgba(15,23,42,.60)}
+.barText{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:10px;color:#0f172a;font-weight:900;mix-blend-mode:multiply}
+
+.footer{padding:14px}
+.footerRow{display:grid;gap:6px}
+.footerTitle{font-weight:900}
+.footerText{color:var(--muted);font-size:12px;line-height:1.35}
+
+/* Marcadores Leaflet (divIcon) */
+.markerDot{
+  width:14px;
+  height:14px;
+  border-radius:999px;
+  border:2px solid #0f172a;
+  background:#cbd5e1;
+  box-shadow:0 8px 18px rgba(2,6,23,.18);
+}
+.markerDot.garden{ background:#86efac; border-color:#065f46; }
+.markerDot.selected{ outline: 4px solid rgba(15,23,42,.18); }
+
+/* Mini badge del distrito en el mapa */
+.mapBadge{
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:8px 10px;
+  font-size:12px;
+  font-weight:900;
+  color:#0f172a;
+  box-shadow:0 10px 26px rgba(2,6,23,.10);
+}
+
+/* Segmented controls (pollutant + time mode) */
+.divider{height:1px;background:var(--border);margin:14px 0 8px 0;}
+.segBlock{margin-top:6px;}
+.segHeader{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+.segHint{font-size:12px;color:var(--muted);}
+.seg{display:flex;gap:8px;flex-wrap:wrap;}
+.segBtn{
+  flex:1;
+  min-width: 88px;
+  padding:9px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#fff;
+  cursor:pointer;
+  font-weight:900;
+  font-size:12px;
+}
+.segBtn:hover{box-shadow:0 10px 26px rgba(2,6,23,.08)}
+.segBtn.active{background:#0f172a;color:#fff;border-color:#0f172a}
+
+/* Leaflet legend */
+.mapLegend{
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:10px;
+  min-width: 190px;
+  box-shadow:0 10px 26px rgba(2,6,23,.10);
+  font-family: ui-sans-serif, system-ui;
+}
+.mapLegendTitle{font-size:12px;font-weight:900;color:#0f172a;margin-bottom:8px;}
+.mapLegendRow{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;color:var(--muted);}
+.mapLegendBar{height:10px;border-radius:999px;border:1px solid var(--border);overflow:hidden;margin-top:8px;}
+.mapLegendBarInner{height:100%;width:100%;}
+.mapLegendFoot{margin-top:8px;font-size:11px;color:var(--muted);line-height:1.25;}
+
+/* District outline */
+.districtOutline{
+  stroke: rgba(15,23,42,.9);
+}

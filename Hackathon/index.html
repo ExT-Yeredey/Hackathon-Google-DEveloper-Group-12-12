@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart City · Jardines Verticales</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Leaflet (mapa tipo Google) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🌿</div>
+      <div>
+        <div class="title">Jardines Verticales · Monitor urbano</div>
+        <div class="subtitle">Mapa + comparativa (Ahora vs Hace 1 año) · Demo hackathon</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="pill">📅 Ahora vs Hace 1 año</span>
+      <span class="pill">🛰️ Datos: simulados / Open Data</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel">
+      <section class="card">
+        <h2>Filtros</h2>
+
+        <label class="label" for="districtSelect">Distrito</label>
+        <select id="districtSelect" class="select"></select>
+
+        <label class="label" for="buildingSearch">Buscar edificio</label>
+        <div class="search">
+          <span class="searchIcon" aria-hidden="true">🔎</span>
+          <input id="buildingSearch" class="input" placeholder="Ej. Hospital, Torre, Mercado…" />
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="segBlock">
+          <div class="segHeader">
+            <span class="label">Capa del mapa</span>
+            <span class="segHint">(tipo Google)</span>
+          </div>
+          <div class="seg" id="pollutantSeg">
+            <button class="segBtn active" type="button" data-pollutant="pm25">PM2.5</button>
+            <button class="segBtn" type="button" data-pollutant="no2">NO₂</button>
+            <button class="segBtn" type="button" data-pollutant="uaqi">Índice</button>
+          </div>
+
+          <div class="segHeader" style="margin-top:10px;">
+            <span class="label">Comparativa en el mapa</span>
+            <span class="segHint">(hackathon)</span>
+          </div>
+          <div class="seg" id="timeSeg">
+            <button class="segBtn active" type="button" data-time="now">Ahora</button>
+            <button class="segBtn" type="button" data-time="last">Hace 1 año</button>
+            <button class="segBtn" type="button" data-time="diff">Diferencia</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <button id="toggleGardens" class="btn primary" type="button">🌱 Jardines: ON</button>
+          <button id="toggleHeat" class="btn" type="button">🔥 Capa calor: ON</button>
+        </div>
+
+        <div class="sliderBlock">
+          <div class="sliderHeader">
+            <span class="label">Impacto jardines (demo)</span>
+            <span id="impactValue" class="value">12%</span>
+          </div>
+          <input id="impactSlider" type="range" min="0" max="25" step="1" value="12" />
+          <p class="hint">Simula cuánto mejorarían PM2.5/NO₂ y temperatura en el distrito gracias a jardines verticales.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Resumen del distrito</h2>
+        <div class="kpis" id="kpis"></div>
+        <div class="note" id="aiRecommendation"></div>
+      </section>
+
+      <section class="card small">
+        <h2>Leyenda</h2>
+        <div class="legend">
+          <div class="legendItem"><span class="dot building"></span> Edificio</div>
+          <div class="legendItem"><span class="dot garden"></span> Jardín vertical</div>
+          <div class="legendItem"><span class="dot heat"></span> Zonas calientes (mock)</div>
+        </div>
+      </section>
+    </aside>
+
+    <section class="content">
+      <div class="card">
+        <div class="cardHeaderRow">
+          <div>
+            <h2>Mapa</h2>
+            <p class="muted">Selecciona un edificio para ver su ficha (mock).</p>
+          </div>
+          <div class="right">
+            <span id="districtBadge" class="badge"></span>
+          </div>
+        </div>
+
+        <div id="map" class="map" role="application" aria-label="Mapa de edificios"></div>
+
+        <div class="belowMap">
+          <div class="card mini">
+            <h3>Edificio seleccionado</h3>
+            <div id="buildingCard" class="buildingCard"></div>
+          </div>
+
+          <div class="card mini charts">
+            <div class="tabs">
+              <button class="tab active" data-tab="air" type="button">🌬️ Aire</button>
+              <button class="tab" data-tab="temp" type="button">🌡️ Temperatura</button>
+            </div>
+
+            <div id="tab-air" class="tabPanel active">
+              <div class="chart">
+                <div class="chartTitle">PM2.5 (µg/m³) · Ahora vs Hace 1 año</div>
+                <div id="pmBars" class="bars"></div>
+              </div>
+              <div class="chart">
+                <div class="chartTitle">NO₂ (µg/m³) · Ahora vs Hace 1 año</div>
+                <div id="no2Bars" class="bars"></div>
+              </div>
+            </div>
+
+            <div id="tab-temp" class="tabPanel">
+              <div class="chart">
+                <div class="chartTitle">Temperatura (°C) · Ahora vs Hace 1 año</div>
+                <div id="tempBars" class="bars"></div>
+              </div>
+            </div>
+
+            <p class="hint">Para hackathon: estos gráficos son mock. Luego podéis conectar Open Data real.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer card">
+        <div class="footerRow">
+          <div class="footerTitle">Nota para la demo</div>
+          <div class="footerText">
+            Este dashboard usa datos simulados. Sustitución rápida: Open Data (calidad del aire y meteorología), GeoJSON de distritos y un inventario de edificios con jardines.
+          </div>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Leaflet JS + Heat plugin -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
