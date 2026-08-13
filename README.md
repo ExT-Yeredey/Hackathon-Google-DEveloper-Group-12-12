@@ -1,21 +1,31 @@
 # Smart City · Jardines Verticales
 
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) ![Leaflet](https://img.shields.io/badge/Leaflet.js-199900?style=flat-square&logo=leaflet&logoColor=white)
+Prototipo web desarrollado durante un hackathon de Google Developer Group para explorar de forma visual el posible impacto de los jardines verticales en un entorno urbano.
 
-Prototype built during a Google Developer Group hackathon.
+[Ver demostración](https://ext-yeredey.github.io/Hackathon-Google-DEveloper-Group-12-12/)
 
-## Overview
+## Qué permite hacer
 
-An interactive map comparing simulated urban air quality (PM2.5, NO2) and heat data between "now" and "one year ago", with a slider to simulate the potential impact of vertical gardens on air quality and temperature.
+- Comparar datos urbanos simulados de calidad del aire y temperatura.
+- Alternar entre el estado actual y el de un año anterior.
+- Ajustar un simulador de jardines verticales.
+- Consultar los resultados sobre un mapa interactivo.
 
-## Tech Stack
+## Tecnologías
 
-HTML, CSS, JavaScript, and Leaflet.js for the interactive map.
+- JavaScript
+- HTML
+- CSS
+- Leaflet
 
-## Run Locally
+## Ejecución local
 
-Open Hackathon/index.html in a browser, or serve the Hackathon folder with any static file server.
+Abre `Hackathon/index.html` en un navegador o sirve la carpeta `Hackathon` con un servidor estático.
 
-## Status
+## Estado y datos
 
-Hackathon demo. Data shown is simulated for demonstration purposes.
+Proyecto de demostración creado para el hackathon. Los datos son simulados y no deben interpretarse como mediciones reales ni como predicciones científicas.
+
+## Licencia
+
+MIT.
