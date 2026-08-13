@@ -2,7 +2,7 @@
 
 Prototipo web desarrollado durante un hackathon de Google Developer Group para explorar de forma visual el posible impacto de los jardines verticales en un entorno urbano.
 
-[Ver demostración](https://ext-yeredey.github.io/Hackathon-Google-DEveloper-Group-12-12/)
+[Ver demostración](https://ext-yeredey.github.io/smart-city-vertical-gardens/)
 
 ## Qué permite hacer
 
